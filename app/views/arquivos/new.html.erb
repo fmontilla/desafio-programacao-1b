@@ -1,0 +1,18 @@
+<div class="container">
+  <%if notice %>
+    <div id="notice" class="alert alert-warning" role="alert"> <%= notice %> </div>
+  <% end %>
+
+  <h2>Arquivos para serem Importados</h2><br>
+  <% if @file_array %>
+    <div class="row">
+        <% @file_array.each_with_index do |arquivo, i| %>
+            <div class="listing-content">
+              <%= link_to arquivo, edit_arquivo_path(i) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <br><%= link_to "Arquivos Importados", root_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
+
+</div>

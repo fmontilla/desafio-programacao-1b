@@ -1,0 +1,30 @@
+<div class="container">
+  <%if notice %>
+    <div id="notice" class="alert alert-info" role="alert"> <%= notice %> </div>
+  <% end %>
+  <h1>Arquivos Importados</h1>
+  <table>
+    <tr>
+      <th style="width:35%;">Data Upload</th>
+      <th style="width:30%;">Arquivo</th>
+      <th style="width:20%;">Receita Bruta</th>
+    </tr>
+
+    <% if @arquivos %>
+      <% @arquivos.each do |arquivo| %>
+        <tr>
+          <td><%= arquivo.data_upload %> </td>
+          <td><%= link_to arquivo.nome_arq, arquivo_path(arquivo) %> </td>
+          <td>R$ <%= arquivo.receita_bruta %> </td>
+          <% if @eh_mobile == false %>
+            <td><%= link_to "Deletar Arquivo", arquivo_path(arquivo), method: :delete %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+  <% if @eh_mobile == false %>
+    <br><%= link_to "Importar Arquivo", new_arquivo_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
+  <% end %>
+</div>
+
